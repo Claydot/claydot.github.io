@@ -41,33 +41,34 @@ color: #FF9900;
 <hr>
 <!-- Goal -->
 <h3>Problem Statement</h3>
-
-One or two sentences on the motivation behind the problem you are solving. One or two sentences describing the approach you took. One or two sentences on the main result you obtained.
-<br><br>
+In the physical world, humans draw and write their abstract idea or knowledge to better explain to audiences. As computer technology has developed, streaming media emerges as new visual means to convey information to distant audiences. Although humans can easily understand the concept displayed in streaming video, machines do not recognize the contents in the images embedded in video, and thus the information in the streaming video cannot be processed to be used in the computer system. At this moment, we propose to train a Convolutional Neural Network (CNN) to classify single/multiple handwritten digits from live video feed so that the handwritten digits displayed in the live video can be converted into machine-encoded text. 
+  <br><br>
 <!-- figure -->
 <h3>Approach</h3>
-A figure that conveys the main idea behind the project or the main application being addressed.
+First, we will use OpenCV to process the live feed and send the frames of images to the backend Python file, and to display the classification on the video feed. We seek to have an app that displays the captured video feed from the default camera/webcam, and overlays the predicted bounding boxes and digits on the screen in real time. Then, we plan to train a CNN using PyTorch to perform the end-to-end task of simultaneously recognizing and localizing all the digits of a number. 
 <br><br>
 <!-- Main Illustrative Figure --> 
 <div style="text-align: center;">
-<img style="height: 200px;" alt="" src="mainfig.png">
+<!--<img style="height: 200px;" alt="" src="mainfig.png"> -->
 </div>
 
 <br><br>
 <!-- Experiments -->
 <h3>Experiments</h3>
-Motivation behind the problem you are solving, what applications it has, any brief background on the particular domain you are working in (if not regular RBG photographs), etc. If you are using a new way to solve an existing problem, briefly mention and describe the existing approaches and tell us how your approach is new.
-
+We will be using the MNIST Dataset and the SVHN Dataset to train a Convolutional Neural Network (CNN). These datasets contain thousands of handwritten digits and digits recorded from video data. Our experimental procedure can be broken into three steps:
+  <li>Train a CNN on the MNIST dataset to classify single/multiple handwritten digits. This can be a way to quickly test out the model architecture and gives us a baseline performance of the model.  </li>
+  <li>Train a CNN on the SVHN dataset to classify single/multiple handwritten digits</li>
+  <li>Evaluate the efficacy of these CNNs to classify single/multiple handwritten digits from live video data.</li>
+  <li>We also seek to compare the performances depending on different architectures/dataset. We will evaluate per digit and whole number accuracy and precision.</li>
 <br><br>
 <!-- Results -->
 <h3>Results</h3>
-Describe very clearly and systematically your approach to solve the problem. Tell us exactly what existing implementations you used to build your system. Tell us what obstacles you faced and how you addressed them. Justify any design choices or judgment calls you made in your approach.
-
+When we shoot video and introduce the live video feed to the system, the system will process the image frames and extract only the digits, and the digits on the video screen will be marked with green border around, and the equivalent digits will be printed out.
 <br><br>
   
   <hr>
   <footer> 
-  <p>© You Name Here</p>
+  <p>© Bryan Baek, Christopher Banks, Clay Dodson, Dasom Eom</p>
   </footer>
 </div>
 </div>
