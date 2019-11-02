@@ -135,7 +135,11 @@ Over 10 epochs, I recorded and plotted the loss over time for the MNIST training
 <figcaption></figcaption>
 </figure>
 <br><br>
-We ran the SVHN model over 10 Epochs for both the test set and the training set. After the 2nd Epoch the test set stabilizes within a bounded delta value of the loss. The train set consistently minimized the cross-entropy loss over each Epoch. We realize the model trained on SVHN uses cross-entropy loss because of miscommunication; the partner who worked on this is in China now, and couldn’t make the revision in time. 
+We ran the SVHN model over 10 Epochs for both the test
+  set and the training set. After the 2nd Epoch the test 
+  set stabilizes within a bounded delta value of the loss. 
+  The train set consistently minimized the cross-entropy loss 
+  over each Epoch.
 
 <br><br>  
   
@@ -166,16 +170,24 @@ We ran the SVHN model over 10 Epochs for both the test set and the training set.
 <h3>Conclusion and Future Works</h3>
   Right now, we have a CNN model trained on MNIST handwritten single digit dataset on PyTorch with 98% test set accuracy and a CNN model trained on SVHN digits with 90% test set accuracy. 
  <br><br>
-  In the second phase after the midterm report, we will use OpenCV to process the live feed.
-  When we process the digit image frames, we plan to raise the contrast value of the image and
-  use edge detection algorithm to better detect blurry image so that our model can yield a more precise result.
-  Consequently, we will send the frames of images to the backend Python file, and to display the classification on the video feed.
-  We seek to have an app that displays the captured video feed from the default camera/webcam, and overlays the predicted bounding
-  boxes and digits on the screen in real time. The detected digits will be stored in an output text file. Only the updated digit
-  information in the provided image frames will be added to the output text file. If the video records a stationary digit
-  images, our system will process and store the digit information only one time until there is any other change. 
-In November, we will work on connecting OpenCV to CNN and add more robust capabilities. First, we are trying to figure out the best way to determine regions of interest from data (e.g. segmentation, selective search, region-based CNN). We will create backend program to process video data from webcam. When we were holding the camera and recording the video, we have observed that the movement of the recorder results in less clear image frames. Therefore, we will first stabilize the video to minimize the influence of video recorder’s physical movement on the image processing procedures. As processing all image frames in our CNN model takes a long time, we will collect 1 image frame out of 10 or more consecutive image frames. Consequently, the image frames collected will be processed with edge detection algorithm and will be sent to trained CNN model so that our model can distinguish digit images written with dull shades. Then, we will make bounding boxes for classified digits and display the bounding boxes in the real time video. 
- <br><br>
+In the second phase after the midterm report, 
+  we will use OpenCV to process the live feed. 
+  When we process the digit image frames, we plan 
+  to raise the contrast value of the image and use 
+  edge detection algorithm to better detect blurry 
+  image so that our model can yield a more precise result. 
+  Consequently, we will send the frames of images to the backend 
+  Python file, and to display the classification on the video feed.
+  We seek to have an app that displays the captured video feed from 
+  the default camera/webcam, and overlays the predicted bounding boxes 
+  and digits on the screen in real time. The detected digits will be 
+  stored in an output text file. Only the updated digit information in 
+  the provided image frames will be added to the output text file.
+  If the video records a stationary digit images, our system will
+  process and store the digit information only one time until there
+  is any other change. Additional problems the group is considering
+  are the best ways of determining regions of interest 
+  (e.g. segmentation, selective search, region-based CNN). <br><br>
 What we expect to see is as follows:
 When we shoot video and introduce the live video feed to the system, the system will process the image frames and extract only the digits, and the digits on the video screen will be marked with green colored border around, and the equivalent digits will be printed out and then saved in a text file. 
   <br><br>
