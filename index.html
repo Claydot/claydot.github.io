@@ -139,6 +139,35 @@ We ran the SVHN model over 10 Epochs for both the test set and the training set.
 </figure>
 <br><br>
   
+ 
+  
+<h3>Conclusion and Future Works</h3>
+  Right now, we have a CNN model trained on MNIST handwritten single digit dataset on PyTorch with 98% test set accuracy and a CNN model trained on SVHN digits with 90% test set accuracy. 
+ <br><br>
+In November, we will work on connecting OpenCV to CNN and add more robust capabilities. First, we are trying to figure out the best way to determine regions of interest from data (e.g. segmentation, selective search, region-based CNN). We will create backend program to process video data from webcam. When we were holding the camera and recording the video, we have observed that the movement of the recorder results in less clear image frames. Therefore, we will first stabilize the video to minimize the influence of video recorder’s physical movement on the image processing procedures. As processing all image frames in our CNN model takes a long time, we will collect 1 image frame out of 10 or more consecutive image frames. Consequently, the image frames collected will be processed with edge detection algorithm and will be sent to trained CNN model so that our model can distinguish digit images written with dull shades. Then, we will make bounding boxes for classified digits and display the bounding boxes in the real time video. 
+ <br><br>
+What we expect to see is as follows:
+When we shoot video and introduce the live video feed to the system, the system will process the image frames and extract only the digits, and the digits on the video screen will be marked with green colored border around, and the equivalent digits will be printed out and then saved in a text file. 
+ <br><br>
+When we finish the work, we will evaluate the results and optimize the code to produce a better result.
+Lastly, we will work on the project video/report before the final project due date.
+
+  <br><br>
+  <figure>
+<img src="test_case.gif">
+<figcaption>Webcam Digit Classification Test</figcaption>
+</figure>
+<br><br>
+  
+ <h3>References</h3> 
+  [1] <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large- scale_Video_Classification_2014_CVPR_paper.pdf">https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large- scale_Video_Classification_2014_CVPR_paper.pdf</a>
+ <br><br>
+    [2] <a href="http://yann.lecun.com/exdb/mnist/">http://yann.lecun.com/exdb/mnist/f</a>
+  <br><br>
+      [3] <a href="http://ufldl.stanford.edu/housenumbers/">http://ufldl.stanford.edu/housenumbers/</a>
+  <br><br>
+     [4] <a href="https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability/">https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability/</a>
+  <br><br>
   
 <a href="/proposal.html">Link to Proposal</a> 
   <hr>
