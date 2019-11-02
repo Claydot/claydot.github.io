@@ -63,11 +63,6 @@ We are using two datasets. The MNIST dataset [2] is a database which contains 60
   <figcaption>Example Images from  SVHN</figcaption>
 </figure>
 <br><br>
-<figure>
-  <img src="SVHN_to_CNN.png" alt="" style="height:200px">
-  <figcaption>Input  (32x32x3) images from SVHN dataset to CNN along with labels</figcaption>
-  </figure>
-  <br><br>
   We have trained CNNs using Pytorch and evaluated each model based on their loss, accuracy, and learning time. The architecture of the model to train on the MNIST dataset was [CONV1 - RELU - POOL -  CONV2 - RELU - POOL - FC1 - RELU - FC2 - LOG_SOFTMAX]. The first conv layer has 1 input image channel, 20 output image channels, and 5x5 square convolution kernel followed by a RELU layer (elementwise activation function) Pooling layer to perform a downsampling operation along the spatial dimensions. The second conv layer has 20 input channels, 50 output channels, and 5x5 square convolution kernel followed by same RELU and pooling layer. Then, two fully connected layers and a log of a softmax layer are used to compute the class scores. Log softmax layer improves numerical performance and gradient optimization [4] and this can be useful if the model can be computationally expensive. 
 <br><br>
 The model trained on the SVHN dataset has the following architecture: CONV1 - RELU - POOL - CONV2 - RELU - POOL - FC1 - RELU - FC2 - RELU - FC3]. Both convolution layers have a kernel size of 5x5 and the first convolution layer has 3 input channels and 20 output channels. The second convolution layer has 20 input channels and 50 output channels and each convolution layer is followed by a pooling layer to do a downsampling operation on a 2x2 window of the inputs. The model contains 3 fully connected layers where the final output layer is trained to classify digits from the train set of the SVHN dataset. The backpropagation utilizes the Cross Entropy Loss Function and we optimize using stochastic gradient descent. For obstacles, we see that models trained on these datasets can only classify a single digit at a time. It will be a challenge to first draw a boundary box around each digit present in the image, and second to classify more than a single digit in the image. Currently, given multiple digit in the photograph, either models just return a single predicted label. 
@@ -92,20 +87,20 @@ For the baseline approach, by randomly guessing the digits [0-9], we would achie
 <br>
   <figure>
   <img src="im1.png" alt="" style="height:200px">
-  <figcaption>nn</figcaption>
+  <figcaption></figcaption>
   </figure>
     <figure>
   <img src="im2.png" alt="" style="height:200px">
-  <figcaption>nn</figcaption>
+  <figcaption></figcaption>
   </figure>
   <br>
     <figure>
   <img src="im3.png" alt="" style="height:200px">
-  <figcaption>nn</figcaption>
+  <figcaption></figcaption>
   </figure>
     <figure>
   <img src="im4.png" alt="" style="height:200px">
-  <figcaption>nn</figcaption>
+  <figcaption></figcaption>
   </figure>
   <br>
   In the second experiment for training the MNIST model via PyTorch, we used the batch size of 64, 10 epochs, and 0.01 learning rate and 0.5 momentum. For training and testing, the data was normalized to get the data within in a (0,1) range and reduce the skewness, which can help CNN learn faster and better. The torchvision.transforms package provides tools for preprocessing data and for performing data augmentation. The images were normalized by subtracting the mean RGB value and dividing by the standard deviation of each RGB value; we've hardcoded the mean and std. I picked the default values for the hyperparameters (e.g. learning rate) for the MNIST model because the model achieved 99% accuracy on the test set, and I didn’t see the need to change the hyperparameters. 
@@ -118,17 +113,18 @@ Over 10 epochs, I recorded and plotted the loss over time for the MNIST training
   
 <figure>
 <img src="im5.png" alt="" style="height:200px">
-<figcaption>nn</figcaption>
+<figcaption></figcaption>
 </figure>
   <figure>
 <img src="im6.png" alt="" style="height:200px">
-<figcaption>nn</figcaption>
+<figcaption></figcaption>
 </figure>
+  <br><br>
   With this dataset, we didn’t have a big overfitting problem, but in case we had one, increasing the regularization strength avoids the problem of overfitting because it reduces the complexity of the model, thus by using regularization it is possible to train complex models.
 <br><br>
   <figure>
 <img src="im7.png" alt="" style="height:200px">
-<figcaption>nn</figcaption>
+<figcaption></figcaption>
 </figure>
 <br><br>
 We ran the SVHN model over 10 Epochs for both the test set and the training set. After the 2nd Epoch the test set stabilizes within a bounded delta value of the loss. The train set consistently minimized the cross-entropy loss over each Epoch. We realize the model trained on SVHN uses cross-entropy loss because of miscommunication; the partner who worked on this is in China now, and couldn’t make the revision in time. 
