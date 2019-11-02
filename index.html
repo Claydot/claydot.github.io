@@ -52,7 +52,8 @@ In this project, we are looking at applying Optical Character Recognition (OCR) 
 Currently we have trained a CNN using the MNIST Dataset and the SVHN Dataset to perform the end-to-end task of simultaneously recognizing and localizing all the digits of a number. A CNN is similar to an ordinary neural network that consists of neurons that have learnable weights and biases. CNN, however, makes the explicit assumption that the inputs are images by having the layers arranged in three dimensions: width, height, and depth. This makes the forward function more efficient to implement and reduce the amount of parameters in the network, as the neurons will only be connected to a small region of the previous layer. Regular neural networks do not scale well to full images. For example, an image with 200x200 pixels with 3 RGB values will lead to neurons that have 200*200*3 = 120,000 weights. With several neurons, the parameters would add up quickly.  
 <br><br>
 We are using two datasets. The MNIST dataset [2] is a database which contains 60000 training datasets and 10000 test datasets on handwritten digits, and the SVHN datasets [3] contain 73257 training datasets and 26032 test datasets of the street view house numbers.
- <figure>
+ <br><br>
+  <figure>
     <img src="MNIST.png" alt="" style="height:200px">
 
   <figcaption>Example Images from MNIST  </figcaption>
@@ -63,7 +64,7 @@ We are using two datasets. The MNIST dataset [2] is a database which contains 60
 </figure>
 <br><br>
 <figure>
-  <img src="SVHN.png" alt="" style="height:200px">
+  <img src="SVHN_to_CNN.png" alt="" style="height:200px">
   <figcaption>Input  (32x32x3) images from SVHN dataset to CNN along with labels</figcaption>
   </figure>
   <br><br>
@@ -90,20 +91,20 @@ For the baseline approach, by randomly guessing the digits [0-9], we would achie
   he model trained by PyTorch library showed a better result, we decided to use PyTorch model for our project. 
 <br>
   <figure>
-  <img src="SVHN.png" alt="" style="height:200px">
+  <img src="im1.png" alt="" style="height:200px">
   <figcaption>nn</figcaption>
   </figure>
     <figure>
-  <img src="SVHN.png" alt="" style="height:200px">
+  <img src="im2.png" alt="" style="height:200px">
   <figcaption>nn</figcaption>
   </figure>
   <br>
     <figure>
-  <img src="SVHN.png" alt="" style="height:200px">
+  <img src="im3.png" alt="" style="height:200px">
   <figcaption>nn</figcaption>
   </figure>
     <figure>
-  <img src="SVHN.png" alt="" style="height:200px">
+  <img src="im4.png" alt="" style="height:200px">
   <figcaption>nn</figcaption>
   </figure>
   <br>
@@ -116,13 +117,17 @@ Over 10 epochs, I recorded and plotted the loss over time for the MNIST training
 <br><br>
   
 <figure>
-<img src="SVHN.png" alt="" style="height:200px">
+<img src="im5.png" alt="" style="height:200px">
+<figcaption>nn</figcaption>
+</figure>
+  <figure>
+<img src="im6.png" alt="" style="height:200px">
 <figcaption>nn</figcaption>
 </figure>
   With this dataset, we didn’t have a big overfitting problem, but in case we had one, increasing the regularization strength avoids the problem of overfitting because it reduces the complexity of the model, thus by using regularization it is possible to train complex models.
 <br><br>
   <figure>
-<img src="SVHN.png" alt="" style="height:200px">
+<img src="im7.png" alt="" style="height:200px">
 <figcaption>nn</figcaption>
 </figure>
 <br><br>
