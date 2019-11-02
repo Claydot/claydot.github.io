@@ -136,7 +136,7 @@ We ran the SVHN model over 10 Epochs for both the test set and the training set.
 <br><br>  
   
   <h3>Qualitative Results</h3>
-  
+  The following figures are evaluation images predicted by our model. The model works well for images with high contrast.
     <figure>
 <img src="num1.png" alt="" style="height:200px">
 <figcaption>Model Prediction: 1</figcaption>
@@ -145,6 +145,10 @@ We ran the SVHN model over 10 Epochs for both the test set and the training set.
 <img src="num8.png" alt="" style="height:200px">
 <figcaption>Model Prediction: 8</figcaption>
 </figure>
+  <br><br>
+  The model was then applied to a stream of webcam frames. As shown in the follow gif, 
+  the model was able to accurately determine frames with high contrast. In situations 
+  where the contrast between the digits and background was minimal (ie shadowing/poor lighting), the model preformed poorly. 
   <br><br>
   <figure>
 <img src="test_case.gif">
