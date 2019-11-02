@@ -42,37 +42,107 @@ color: #FF9900;
 <hr>
 <!-- Goal -->
 <h2>Midterm Update</h2>
-<img src="test_case.gif">
-<h3>Problem Statement</h3>
-In the physical world, humans draw and write their abstract idea or knowledge to better explain to audiences. As computer technology has developed, streaming media emerges as new visual means to convey information to distant audiences. Although humans can easily understand the concept displayed in streaming video, machines do not recognize the contents in the images embedded in video, and thus the information in the streaming video cannot be processed to be used in the computer system. At this moment, we propose to train a Convolutional Neural Network (CNN) to classify single/multiple handwritten digits from live video feed so that the handwritten digits displayed in the live video can be converted into machine-encoded text. 
-  <br><br>
+<h3>Abstract</h3>
+In this project, we are looking at applying Optical Character Recognition (OCR) on multi-digits from real-world image frames from a live video feed. In class, we looked at how computer vision problem is difficult because many elements (e.g. occlusion, lighting, rotation) add more complexity. We trained a convolutional neural network (CNN) from scratch on labeled dataset of digit images, and we plan to have the model makes inference on all of the digits on images from a live webcam video feed. Currently, the model trained on MNIST dataset achieves 98% accuracy on test set and the model trained on the SVHN dataset achieves 90% accuracy on the test set.
+<br><br>
+
+
 <!-- figure -->
 <h3>Approach</h3>
-First, we will use OpenCV to process the live feed and send the frames of images to the backend Python file, and to display the classification on the video feed. We seek to have an app that displays the captured video feed from the default camera/webcam, and overlays the predicted bounding boxes and digits on the screen in real time. Then, we plan to train a CNN using PyTorch to perform the end-to-end task of simultaneously recognizing and localizing all the digits of a number. 
+Currently we have trained a CNN using the MNIST Dataset and the SVHN Dataset to perform the end-to-end task of simultaneously recognizing and localizing all the digits of a number. A CNN is similar to an ordinary neural network that consists of neurons that have learnable weights and biases. CNN, however, makes the explicit assumption that the inputs are images by having the layers arranged in three dimensions: width, height, and depth. This makes the forward function more efficient to implement and reduce the amount of parameters in the network, as the neurons will only be connected to a small region of the previous layer. Regular neural networks do not scale well to full images. For example, an image with 200x200 pixels with 3 RGB values will lead to neurons that have 200*200*3 = 120,000 weights. With several neurons, the parameters would add up quickly.  
 <br><br>
-<!-- Main Illustrative Figure --> 
+We are using two datasets. The MNIST dataset [2] is a database which contains 60000 training datasets and 10000 test datasets on handwritten digits, and the SVHN datasets [3] contain 73257 training datasets and 26032 test datasets of the street view house numbers.
+ <figure>
+    <img src="MNIST.png" alt="" style="height:200px">
+
+  <figcaption>Example Images from MNIST  </figcaption>
+</figure>
+   <figure>
+       <img src="SVHN.png" alt="" style="height:200px">
+  <figcaption>Example Images from  SVHN</figcaption>
+</figure>
+<br><br>
+<figure>
+  <img src="SVHN.png" alt="" style="height:200px">
+  <figcaption>Input  (32x32x3) images from SVHN dataset to CNN along with labels</figcaption>
+  </figure>
+  <br><br>
+  We have trained CNNs using Pytorch and evaluated each model based on their loss, accuracy, and learning time. The architecture of the model to train on the MNIST dataset was [CONV1 - RELU - POOL -  CONV2 - RELU - POOL - FC1 - RELU - FC2 - LOG_SOFTMAX]. The first conv layer has 1 input image channel, 20 output image channels, and 5x5 square convolution kernel followed by a RELU layer (elementwise activation function) Pooling layer to perform a downsampling operation along the spatial dimensions. The second conv layer has 20 input channels, 50 output channels, and 5x5 square convolution kernel followed by same RELU and pooling layer. Then, two fully connected layers and a log of a softmax layer are used to compute the class scores. Log softmax layer improves numerical performance and gradient optimization [4] and this can be useful if the model can be computationally expensive. 
+<br><br>
+The model trained on the SVHN dataset has the following architecture: CONV1 - RELU - POOL - CONV2 - RELU - POOL - FC1 - RELU - FC2 - RELU - FC3]. Both convolution layers have a kernel size of 5x5 and the first convolution layer has 3 input channels and 20 output channels. The second convolution layer has 20 input channels and 50 output channels and each convolution layer is followed by a pooling layer to do a downsampling operation on a 2x2 window of the inputs. The model contains 3 fully connected layers where the final output layer is trained to classify digits from the train set of the SVHN dataset. The backpropagation utilizes the Cross Entropy Loss Function and we optimize using stochastic gradient descent. For obstacles, we see that models trained on these datasets can only classify a single digit at a time. It will be a challenge to first draw a boundary box around each digit present in the image, and second to classify more than a single digit in the image. Currently, given multiple digit in the photograph, either models just return a single predicted label. 
+ <br><br>
+In the second phase after the midterm report, we will use OpenCV to process the live feed. When we process the digit image frames, we plan to raise the contrast value of the image and use edge detection algorithm to better detect blurry image so that our model can yield a more precise result. Consequently, we will send the frames of images to the backend Python file, and to display the classification on the video feed. We seek to have an app that displays the captured video feed from the default camera/webcam, and overlays the predicted bounding boxes and digits on the screen in real time. The detected digits will be stored in an output text file. Only the updated digit information in the provided image frames will be added to the output text file. If the video records a stationary digit images, our system will process and store the digit information only one time until there is any other change. 
+
+
 <div style="text-align: center;">
 <!--<img style="height: 200px;" alt="" src="mainfig.png"> -->
 </div>
 
 <br><br>
 <!-- Experiments -->
-<h3>Experiments</h3>
-We will be using the MNIST Dataset and the SVHN Dataset to train a Convolutional Neural Network (CNN). These datasets contain thousands of handwritten digits and digits recorded from video data. Our experimental procedure can be broken into three steps:
-  <ul>  
-  <li>Train a CNN on the MNIST dataset to classify single/multiple handwritten digits. This can be a way to quickly test out the model architecture and gives us a baseline performance of the model.  </li>
-  <li>Train a CNN on the SVHN dataset to classify single/multiple handwritten digits.</li>
-  <li>Evaluate the efficacy of these CNNs to classify single/multiple handwritten digits from live video data.</li>
-  <li>We also seek to compare the performances depending on different architectures/dataset. We will evaluate per digit and whole number accuracy and precision.</li>
-  </ul>
+<h3>Experiments and Results</h3>
+
+  First, we have trained a CNN on the MNIST dataset using two different libraries of Pytorch and TensorFlow/Keras to classify single/multiple handwritten digits. This can be a way to quickly test out the model architecture and gives us a baseline performance of the model. The models were trained using 50 epochs, and each epoch contained 60000 training dataset and 10000 validation dataset for a comparison purpose.
   <br><br>
-<!-- Results -->
-<h3>Results</h3>
-When we shoot video and introduce the live video feed to the system, the system will process the image frames and extract only the digits, and the digits on the video screen will be marked with green border around, and the equivalent digits will be printed out.
+For the baseline approach, by randomly guessing the digits [0-9], we would achieve the theoretical accuracy of 0.1. Then, we used a sklearn library to train a simple random forest classifier model on the MNIST dataset. Random Forest classifier is a simple, ensemble learning method that uses many decision trees and selects the class that is the most often predicted by the trees. From testing on 10000 images, it achieved an accuracy score of 0.955. 
+<br><br>
+  The model trained by TensorFlow/Keras library showed overfitting trend and lower accuracy than the model trained by PyTorch. As t
+  he model trained by PyTorch library showed a better result, we decided to use PyTorch model for our project. 
+<br>
+  <figure>
+  <img src="SVHN.png" alt="" style="height:200px">
+  <figcaption>nn</figcaption>
+  </figure>
+    <figure>
+  <img src="SVHN.png" alt="" style="height:200px">
+  <figcaption>nn</figcaption>
+  </figure>
+  <br>
+    <figure>
+  <img src="SVHN.png" alt="" style="height:200px">
+  <figcaption>nn</figcaption>
+  </figure>
+    <figure>
+  <img src="SVHN.png" alt="" style="height:200px">
+  <figcaption>nn</figcaption>
+  </figure>
+  <br>
+  In the second experiment for training the MNIST model via PyTorch, we used the batch size of 64, 10 epochs, and 0.01 learning rate and 0.5 momentum. For training and testing, the data was normalized to get the data within in a (0,1) range and reduce the skewness, which can help CNN learn faster and better. The torchvision.transforms package provides tools for preprocessing data and for performing data augmentation. The images were normalized by subtracting the mean RGB value and dividing by the standard deviation of each RGB value; we've hardcoded the mean and std. I picked the default values for the hyperparameters (e.g. learning rate) for the MNIST model because the model achieved 99% accuracy on the test set, and I didn’t see the need to change the hyperparameters. 
+ <br><br>
+The SVHN trained model utilized a batch size of 5, 10 epochs and a learning rate of 0.001 with momentum 0.9. For testing the data was normalized within [0,1] for faster learning. The model was trained on 73,257 images and tested on 26, 032 images.
+<br><br>
+To evaluate the models and the approach, we are using negative log likelihood loss. $L(y) = -log(y)$ It is useful to train a classification problem with C classes. It is used commonly with a softmax function. When computing the loss, higher confidence at the correct class leads to lower loss and vice-versa. 
+Over 10 epochs, I recorded and plotted the loss over time for the MNIST training and the testing set. For the most part, the loss is converging at around 0.01 for training and 0.03 for testing. For the accuracy, the training accuracy converges to around 99% after 5 epochs, and the testing accuracy converges to 99% after around 5 epochs. 
 <br><br>
   
+<figure>
+<img src="SVHN.png" alt="" style="height:200px">
+<figcaption>nn</figcaption>
+</figure>
+  With this dataset, we didn’t have a big overfitting problem, but in case we had one, increasing the regularization strength avoids the problem of overfitting because it reduces the complexity of the model, thus by using regularization it is possible to train complex models.
+<br><br>
+  <figure>
+<img src="SVHN.png" alt="" style="height:200px">
+<figcaption>nn</figcaption>
+</figure>
+<br><br>
+We ran the SVHN model over 10 Epochs for both the test set and the training set. After the 2nd Epoch the test set stabilizes within a bounded delta value of the loss. The train set consistently minimized the cross-entropy loss over each Epoch. We realize the model trained on SVHN uses cross-entropy loss because of miscommunication; the partner who worked on this is in China now, and couldn’t make the revision in time. 
+
+<br><br>  
+  
+  <h3>Qualitative Results</h3>
+  
+  <br><br>
+  <figure>
+<img src="test_case.gif">
+<figcaption>Webcam Digit Classification Test</figcaption>
+</figure>
+<br><br>
+  
+  
+<a href="/proposal.html">Link to Proposal</a> 
   <hr>
-<a href="/proposal.html">Link to Proposal</a>
+
   <footer> 
   <p>© Bryan Baek, Christopher Banks, Clay Dodson, Dasom Eom</p>
   </footer>
