@@ -71,7 +71,6 @@ We are using two datasets. The MNIST dataset [2] is a database which contains 60
 <br><br>
 The model trained on the SVHN dataset has the following architecture: CONV1 - RELU - POOL - CONV2 - RELU - POOL - FC1 - RELU - FC2 - RELU - FC3]. Both convolution layers have a kernel size of 5x5 and the first convolution layer has 3 input channels and 20 output channels. The second convolution layer has 20 input channels and 50 output channels and each convolution layer is followed by a pooling layer to do a downsampling operation on a 2x2 window of the inputs. The model contains 3 fully connected layers where the final output layer is trained to classify digits from the train set of the SVHN dataset. The backpropagation utilizes the Cross Entropy Loss Function and we optimize using stochastic gradient descent. For obstacles, we see that models trained on these datasets can only classify a single digit at a time. It will be a challenge to first draw a boundary box around each digit present in the image, and second to classify more than a single digit in the image. Currently, given multiple digit in the photograph, either models just return a single predicted label. 
  <br><br>
-In the second phase after the midterm report, we will use OpenCV to process the live feed. When we process the digit image frames, we plan to raise the contrast value of the image and use edge detection algorithm to better detect blurry image so that our model can yield a more precise result. Consequently, we will send the frames of images to the backend Python file, and to display the classification on the video feed. We seek to have an app that displays the captured video feed from the default camera/webcam, and overlays the predicted bounding boxes and digits on the screen in real time. The detected digits will be stored in an output text file. Only the updated digit information in the provided image frames will be added to the output text file. If the video records a stationary digit images, our system will process and store the digit information only one time until there is any other change. 
 
 
 <div style="text-align: center;">
@@ -81,24 +80,25 @@ In the second phase after the midterm report, we will use OpenCV to process the 
 <br><br>
 <!-- Experiments -->
 <h3>Experiments and Results</h3>
-
+For the baseline approach, by randomly guessing the digits [0-9],
+  we would achieve the theoretical accuracy of 0.1. Then, we first
+  used a sklearn library to train a simple random forest classifier
+  model on the MNIST dataset. Random Forest classifier is a simple, 
+  ensemble learning method that uses many decision trees and selects 
+  the class that is the most often predicted by the trees. From testing on 
+  10000 images, it achieved an accuracy score of 0.955.
+  <br><br>
   First, we have trained a CNN on the MNIST dataset using two different libraries of Pytorch and TensorFlow/Keras to classify single/multiple handwritten digits. This can be a way to quickly test out the model architecture and gives us a baseline performance of the model. The models were trained using 50 epochs, and each epoch contained 60000 training dataset and 10000 validation dataset for a comparison purpose.
   <br><br>
-For the baseline approach, by randomly guessing the digits [0-9], we would achieve the theoretical accuracy of 0.1. Then, we used a sklearn library to train a simple random forest classifier model on the MNIST dataset. Random Forest classifier is a simple, ensemble learning method that uses many decision trees and selects the class that is the most often predicted by the trees. From testing on 10000 images, it achieved an accuracy score of 0.955. 
-<br><br>
-  The model trained by TensorFlow/Keras library showed overfitting trend and lower accuracy than the model trained by PyTorch. As t
-  he model trained by PyTorch library showed a better result, we decided to use PyTorch model for our project. 
-<br>
   <figure>
   <img src="im1.png" alt="" style="height:200px">
   <figcaption></figcaption>
   </figure>
-  <!--
     <figure>
   <img src="im2.png" alt="" style="height:200px">
   <figcaption></figcaption>
   </figure>
--->
+<!-->
   <br>
     <figure>
   <img src="im3.png" alt="" style="height:200px">
@@ -109,6 +109,7 @@ For the baseline approach, by randomly guessing the digits [0-9], we would achie
   <figcaption></figcaption>
   </figure>
   <br>
+<-->
   In the second experiment for training the MNIST model via PyTorch, we used the batch size of 64, 10 epochs, and 0.01 learning rate and 0.5 momentum. For training and testing, the data was normalized to get the data within in a (0,1) range and reduce the skewness, which can help CNN learn faster and better. The torchvision.transforms package provides tools for preprocessing data and for performing data augmentation. The images were normalized by subtracting the mean RGB value and dividing by the standard deviation of each RGB value; we've hardcoded the mean and std. I picked the default values for the hyperparameters (e.g. learning rate) for the MNIST model because the model achieved 99% accuracy on the test set, and I didn’t see the need to change the hyperparameters. 
  <br><br>
 The SVHN trained model utilized a batch size of 5, 10 epochs and a learning rate of 0.001 with momentum 0.9. For testing the data was normalized within [0,1] for faster learning. The model was trained on 73,257 images and tested on 26, 032 images.
@@ -164,6 +165,14 @@ We ran the SVHN model over 10 Epochs for both the test set and the training set.
 <h3>Conclusion and Future Works</h3>
   Right now, we have a CNN model trained on MNIST handwritten single digit dataset on PyTorch with 98% test set accuracy and a CNN model trained on SVHN digits with 90% test set accuracy. 
  <br><br>
+  In the second phase after the midterm report, we will use OpenCV to process the live feed.
+  When we process the digit image frames, we plan to raise the contrast value of the image and
+  use edge detection algorithm to better detect blurry image so that our model can yield a more precise result.
+  Consequently, we will send the frames of images to the backend Python file, and to display the classification on the video feed.
+  We seek to have an app that displays the captured video feed from the default camera/webcam, and overlays the predicted bounding
+  boxes and digits on the screen in real time. The detected digits will be stored in an output text file. Only the updated digit
+  information in the provided image frames will be added to the output text file. If the video records a stationary digit
+  images, our system will process and store the digit information only one time until there is any other change. 
 In November, we will work on connecting OpenCV to CNN and add more robust capabilities. First, we are trying to figure out the best way to determine regions of interest from data (e.g. segmentation, selective search, region-based CNN). We will create backend program to process video data from webcam. When we were holding the camera and recording the video, we have observed that the movement of the recorder results in less clear image frames. Therefore, we will first stabilize the video to minimize the influence of video recorder’s physical movement on the image processing procedures. As processing all image frames in our CNN model takes a long time, we will collect 1 image frame out of 10 or more consecutive image frames. Consequently, the image frames collected will be processed with edge detection algorithm and will be sent to trained CNN model so that our model can distinguish digit images written with dull shades. Then, we will make bounding boxes for classified digits and display the bounding boxes in the real time video. 
  <br><br>
 What we expect to see is as follows:
