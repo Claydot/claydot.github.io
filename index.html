@@ -110,6 +110,7 @@ For the baseline approach, by randomly guessing the digits [0-9],
   </figure>
   <br>
 -->
+  <br>
   In the second experiment for training the MNIST model via PyTorch, we used the batch size of 64, 10 epochs, and 0.01 learning rate and 0.5 momentum. For training and testing, the data was normalized to get the data within in a (0,1) range and reduce the skewness, which can help CNN learn faster and better. The torchvision.transforms package provides tools for preprocessing data and for performing data augmentation. The images were normalized by subtracting the mean RGB value and dividing by the standard deviation of each RGB value; we've hardcoded the mean and std. I picked the default values for the hyperparameters (e.g. learning rate) for the MNIST model because the model achieved 99% accuracy on the test set, and I didn’t see the need to change the hyperparameters. 
  <br><br>
 The SVHN trained model utilized a batch size of 5, 10 epochs and a learning rate of 0.001 with momentum 0.9. For testing the data was normalized within [0,1] for faster learning. The model was trained on 73,257 images and tested on 26, 032 images.
