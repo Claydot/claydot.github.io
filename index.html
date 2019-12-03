@@ -221,12 +221,16 @@ images were identified with 37.3% accuracy.
 
 <br><br>
 <h3>Qualitative Results</h3>
-  
+  <h4>SVHN - Single Digit Identification</h4>
   I STOPPED HERE
   
 <figure>
 <img src="im5.png" alt="" style="height:200px">
-<figcaption></figcaption>
+<figcaption>Fig. 9: An example of the 5-digit classifier under 
+	preprocessing (using K-means) and not using preprocessing. 
+	In this example the classifier outputs a digit [0-10] with a
+	10 output if it does not have a guess. Using k-means, it was 
+	able to correctly identify the digit 3./figcaption>
 </figure>
   <figure>
 <img src="im6.png" alt="" style="height:200px">
@@ -240,64 +244,48 @@ images were identified with 37.3% accuracy.
 <figcaption></figcaption>
 </figure>
 <br><br>
-We ran the SVHN model over 10 Epochs for both the test
-  set and the training set. After the 2nd Epoch the test 
-  set stabilizes within a bounded delta value of the loss. 
-  The train set consistently minimized the cross-entropy loss 
-  over each Epoch.
 
+<h4>SVHN - Multi Digit Identification</h4>
 <br><br>  
-  
-  <h3>Qualitative Results</h3>
-  The following figures are evaluation images predicted by our model. The model works well for images with high contrast.
-  <br><br>
-    <figure>
-<img src="num1.png" alt="" style="height:200px">
-<figcaption>Model Prediction: 1</figcaption>
+  <img src="num1.png" alt="" style="height:200px">
+<figcaption>
+	Fig. 10: This example shows the k-means
+	processed image and grayscale image (32x32) for
+	the SVHN multi-digit classifier. The predicted numbers
+	are shown at the bottom.
+	</figcaption>
 </figure>
-<figure>
-<img src="num8.png" alt="" style="height:200px">
-<figcaption>Model Prediction: 8</figcaption>
+	
+<h4>MNIST - Single Digit Identification</h4>
+<br><br>  
+  <img src="num1.png" alt="" style="height:200px">
+<figcaption>
+Fig. 11: MNIST after using three different preprocessing 
+	methods for image prediction. In this scenario, 
+	only the k-means preprocessing yields the correct
+	prediction (seen at the bottom of the image). 
+
+	</figcaption>
 </figure>
-  <br><br>
-  The model was then applied to a stream of webcam frames. As shown in the follow gif, 
-  the model was able to accurately determine frames with high contrast. In situations 
-  where the contrast between the digits and background was minimal such as in poor lighting, the model preformed poorly. 
-  <br><br>
-  <figure>
-<img src="test_case.gif">
-<figcaption>Webcam Digit Classification Test</figcaption>
-</figure>
-<br><br>
-  
- 
+	
+
   
 <h3>Conclusion and Future Works</h3>
-  Right now, we have a CNN model trained on MNIST handwritten single digit dataset on PyTorch with 98% test set accuracy and a CNN model trained on SVHN digits with 90% test set accuracy. 
+In conclusion, we have developed an end-to-end
+	platform for recognition and classification of 
+	images utilizing two seperate CNN trained on MNIST
+	data and SVHN data. From our inference tests we see
+	that the MNIST trained model responded better to 
+	preprocessing with the K-means input for predicting numbers.
+	The multi-digit trained classifier performed best without a 
+	preprocessing element. Future work can testing varying 
+	window sizes for image prediction, longer training times 
+	for the MNIST model and developing a real time probabilistic
+	classifier that increasingly weighs a preferred prediction 
+	of a digit based on the shape and structure of a digit as it 
+	is being written.
  <br><br>
-In the second phase after the midterm report, 
-  we will use OpenCV to process the live feed. 
-  When we process the digit image frames, we plan 
-  to raise the contrast value of the image and use 
-  edge detection algorithm to better detect blurry 
-  image so that our model can yield a more precise result. 
-  Consequently, we will send the frames of images to the backend 
-  Python file, and to display the classification on the video feed.
-  We seek to have an app that displays the captured video feed from 
-  the default camera/webcam, and overlays the predicted bounding boxes 
-  and digits on the screen in real time. The detected digits will be 
-  stored in an output text file. Only the updated digit information in 
-  the provided image frames will be added to the output text file.
-  If the video records a stationary digit images, our system will
-  process and store the digit information only one time until there
-  is any other change. Additional problems the group is considering
-  are the best ways of determining regions of interest 
-  (e.g. segmentation, selective search, region-based CNN) for large images with
-  multiple digit objects. 
-  <br><br>
-What we expect to see is as follows:
-When we shoot video and introduce the live video feed to the system, the system will process the image frames and extract only the digits, and the digits on the video screen will be marked with green colored border around, and the equivalent digits will be printed out and then saved in a text file. 
-  <br><br>
+
   
  <h3>References</h3> 
   [1] <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2014/html/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html">https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html</a>
@@ -308,6 +296,8 @@ When we shoot video and introduce the live video feed to the system, the system 
   <br><br>
      [4] <a href="https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability/">https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability/</a>
   <br><br>
+	
+	
   
 <a href="/proposal.html">Link to Proposal</a> 
 <br><br>
