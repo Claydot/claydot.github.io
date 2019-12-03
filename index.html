@@ -88,12 +88,29 @@ We approached this problem using CNNs due to their robust capabilities at learni
 
 <br>
 <br>
-	We trained a CNN using the MNIST Dataset and the SVHN dataset to perform the end-to-end task of simultaneously recognizing and localizing all the digits of a number. We trained CNNs using Pytorch and evaluated each model based on their loss, accuracy, and learning time. The architecture of the model to train on the MNIST dataset was [CONV1 - RELU - POOL -  CONV2 - RELU - POOL - FC1 - RELU - FC2 - LOG_SOFTMAX]. The first conv layer has 1 input image channel, 20 output image channels, and 5x5 square convolution kernel followed by a RELU layer (elementwise activation function) Pooling layer to perform a downsampling operation along the spatial dimensions. The second conv layer has 20 input channels, 50 output channels, and 5x5 square convolution kernel followed by same RELU and pooling layer. Then, two fully connected layers and a log of a softmax layer are used to compute the class scores. Log softmax layer improves numerical performance and gradient optimization (https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability), and this can be useful if the model can be computationally expensive. 
+	We trained a CNN using the MNIST Dataset and the SVHN 
+	dataset to perform the end-to-end task of simultaneously 
+	recognizing and localizing all the digits of a number.
+	We trained CNNs using Pytorch and evaluated each model
+	based on their loss, accuracy, and learning time. The 
+	architecture of the model to train on the MNIST dataset 
+	was [CONV1 - RELU - POOL -  CONV2 - RELU - POOL - FC1 - RELU - FC2 - LOG_SOFTMAX]. 
+	The first conv layer has 1 input image channel, 20 output 
+	image channels, and 5x5 square convolution kernel followed by 
+	a RELU layer (elementwise activation function) Pooling layer 
+	to perform a downsampling operation along the spatial dimensions. 
+	The second conv layer has 20 input channels, 50 output channels,
+	and 5x5 square convolution kernel followed by same RELU and pooling
+	layer. Then, two fully connected layers and a log of a softmax layer
+	are used to compute the class scores. Log softmax layer improves 
+	numerical performance and gradient optimization [4], 
+	and this can be useful if the model can be computationally expensive. 
  <br><br>
   <figure>
     <img src="MNIST.png" alt="" style="height:200px">
   <figcaption>Figure 1: Example Images from the MNIST dataset  </figcaption>
 </figure>
+ <br><br>
 The model trained on the SVHN dataset has 10 sequential hidden 
 	layers with layers 1-8 having the following structure: 
 	CONV-BATCHNORM-RELU-MAXPOOL-DROPOUT, the last three 
@@ -115,7 +132,7 @@ The model trained on the SVHN dataset has 10 sequential hidden
        <img src="SVHN.png" alt="" style="height:200px">
   <figcaption>Figure 2. Example Images from the SVHN dataset</figcaption>
 </figure>
-
+<br>
 INSERT STUFF
 <br>
 
@@ -125,6 +142,8 @@ After training our models, we preprocess images for easy user
 	We do this by converting the image to a binary image 
 	via thresholding and applying the following
 	blurring kernel filter:
+	<br>
+	<img src="kernel.png" alt="" style="height:50px">
 <br>
 <br>
 <br>
@@ -141,8 +160,8 @@ After applying the blurring filter we find 5 contours of the image
   <br>
 <br> 
    <figure>
-       <img src="SVHN.png" alt="" style="height:200px">
-  <figcaption>Figure 3. Sample Image of Bounding Box Algo</figcaption>
+       <img src="sampleBounding.png" alt="" style="height:200px">
+  <figcaption>Fig. 3: Sample image of bounding box algorithm output at top. The bottom contains the full image.</figcaption>
 </figure>
 
 <br><br>
@@ -150,7 +169,7 @@ After this step,  we continue the preprocessing of the image by applying two met
 
 <br><br>
    <figure>
-       <img src="SVHN.png" alt="" style="height:200px">
+       <img src="preprocessed.png" alt="" style="height:200px">
   <figcaption>Fig. 4: Resulting images after preprocessing. We also include the predicted digit inferred from the MNIST model. Fig. 4a (upper left): Edge detection preprocessing done on the input image. Fig. 4b (upper right): K-means preprocessing done on the input image. Fig. 4c (lower left): Original image. Fig. 4d (lower right): No processing done, the image is resized (28 x 28) and converted to grayscale. The colors shown are a result of OpenCV BGR color transformation.
 </figcaption>
 </figure>
@@ -197,14 +216,22 @@ on 10000 images, it achieved an accuracy score of 0.955.
   and the testing accuracy converges to 99% after around 5 epochs.
   <br><br>
   <figure>
-  <img src="im1.png" alt="" style="height:200px">
-  <figcaption>Fig 5</figcaption>
+  <img src="epochs.png" alt="" style="height:200px">
+  <figcaption>Fig. 5: Likelihood Loss/Accuracy vs. Epochs for the MNIST trained CNN</figcaption>
   </figure>
-    <figure>
-  <img src="im2.png" alt="" style="height:200px">
-  <figcaption>FIG 5</figcaption>
+<br><br>
+	With this dataset, we didn’t have a big 
+	overfitting problem, but in case we had one,
+	increasing the regularization strength avoids 
+	the problem of overfitting because it reduces the
+	complexity of the model, thus by using regularization it
+	is possible to train complex models.
+	
+	<img src="epoch50.png" alt="" style="height:200px">
+  <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
-<h3>Primary Test</h3>
+<br><br>
+	<h3>Primary Test</h3>
   <br>
  We provide 50 test cases (50 short videos with different single 
  handwritten digit) and test the models. If our models create a text 
