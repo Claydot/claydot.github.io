@@ -231,7 +231,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
 <br><br>
-	<h3>Primary Test</h3>
+<h3>Primary Test</h3>
   <br>
  We provide 50 test cases (50 short videos with different single 
  handwritten digit) and test the models. If our models create a text 
@@ -239,18 +239,19 @@ on 10000 images, it achieved an accuracy score of 0.955.
  consider it as a success case.
  <br><br>
   <figure>
-  <img src="im2.png" alt="" style="height:200px">
-  <figcaption>FIG 7</figcaption>
+  <img src="testcases.png" alt="" style="height:200px">
+  <figcaption>Fig. 7: Sample images of single digits</figcaption>
   </figure>
 SVHN Model:
 Using the model trained to detect up to 5 digits in a single image, 
 we test our preprocessing algorithms on hand written images.
-
--No Preprocessing: Out of the 50 images used, with no 
-preprocessing our model predicts the correct image with 68.8% accuracy
- 
--K-means preprocessing: Using K-means preprocessing we 
-get 68.8% accuracy as well.
+<ul>
+  <li>No Preprocessing: Out of the 50 images used, with no 
+preprocessing our model predicts the correct image with 68.8% accuracy</li>
+  <li>K-means preprocessing: Using K-means preprocessing we 
+get 68.8% accuracy as well.</li>
+  <li>Milk</li>
+</ul>
  
 This outcome suggests that preprocessing may not affect 
 single digit detecting for this model.
@@ -259,46 +260,44 @@ single digit detecting for this model.
 MNIST Model:
 Using the bounding box algorithm in junction with three types of 
 image preprocessing, we verify which method increases our inference ability.
--Edge Detection Preprocessing: Out of 50 images, 
-using canny edge detection we were not able to correctly predict an image.
- 
--K-means preprocessing: Using K-means preprocessing
-to divide the image into 2 clusters allowed the MNIST model 
-to predict digits correctly 22.2% of the time.
- 
--No preprocessing: With no preprocessing, images were 
-predicted correctly 24.4% of the time.
+<ul>
+  <li>Edge Detection Preprocessing: Out of 50 images, using canny edge detection we were not able to correctly predict an image.
+</li>
+  <li>K-means preprocessing: Using K-means preprocessing to divide the image into 2 clusters allowed the MNIST model to predict digits correctly 22.2% of the time.</li>
+  <li>No preprocessing: With no preprocessing, images were predicted correctly 24.4% of the time.</li>
+</ul>
+<br><br>
 
 <h3>Secondary Test</h3>
 We provide 25 test cases (25 short videos with different multiple handwritten digits)  and test the model. If our model creates a text file which contains the equivalent digits from the test video, we will consider it as a success case.
 <figure>
-<img src="im5.png" alt="" style="height:200px">
-<figcaption>Fig 8</figcaption>
+<img src="test25.png" alt="" style="height:200px">
+<figcaption>Fig. 8: Sample images of multiple handwritten digits</figcaption>
 </figure>
 
 <br><br>
 SVHN Model:
--K-means preprocessing: Out of 25 images, using k-means 
-preprocessing gave the model a prediction accuracy of 28.4%.
- 
--No preprocessing: With no preprocessing other than resizing 
-the image and converting it to grayscale, the model achieved an accuracy of 40.9 %.
- 
-MNIST Model:
- 
--Edge Detection Preprocessing: Out of 25 images, 
-using canny edge detection we were able to correctly predict an image with 38.7% accuracy.
- 
--K-means preprocessing: Using K-means preprocessing
-to divide the image into 2 clusters allowed the MNIST model to predict digits 40.8% accuractly.
- 
--No preprocessing: With no preprocessing, 
-images were identified with 37.3% accuracy.
 <ul>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
+  <li>K-means preprocessing: Out of 25 images, using k-means 
+preprocessing gave the model a prediction accuracy of 28.4%.</li>
+  <li>No preprocessing: With no preprocessing other than resizing 
+the image and converting it to grayscale, the model achieved an accuracy of 40.9 %.
+ </li>
+  <li>No preprocessing: With no preprocessing, images were predicted correctly 24.4% of the time.</li>
 </ul>
+
+MNIST Model:
+ <ul>
+  <li>Edge Detection Preprocessing: Out of 25 images, 
+using canny edge detection we were able to correctly predict an image with 38.7% accuracy.</li>
+	 
+  <li>K-means preprocessing: Using K-means preprocessing
+to divide the image into 2 clusters allowed the MNIST model to predict digits 40.8% accuractly.
+ </li>
+  <li>No preprocessing: With no preprocessing, 
+images were identified with 37.3% accuracy.</li>
+</ul>
+	
 
 <br><br>
 <h3>Qualitative Results</h3>
@@ -306,29 +305,17 @@ images were identified with 37.3% accuracy.
   I STOPPED HERE
   
 <figure>
-<img src="im5.png" alt="" style="height:200px">
+<img src="kmeans3.png" alt="" style="height:200px">
 <figcaption>Fig. 9: An example of the 5-digit classifier under 
 	preprocessing (using K-means) and not using preprocessing. 
 	In this example the classifier outputs a digit [0-10] with a
 	10 output if it does not have a guess. Using k-means, it was 
 	able to correctly identify the digit 3./figcaption>
 </figure>
-  <figure>
-<img src="im6.png" alt="" style="height:200px">
-<figcaption></figcaption>
-</figure>
-  <br><br>
-  With this dataset, we didn’t have a big overfitting problem, but in case we had one, increasing the regularization strength avoids the problem of overfitting because it reduces the complexity of the model, thus by using regularization it is possible to train complex models.
-<br><br>
-  <figure>
-<img src="im7.png" alt="" style="height:200px">
-<figcaption></figcaption>
-</figure>
-<br><br>
-
+	<br><br>
 <h4>SVHN - Multi Digit Identification</h4>
 <br><br>  
-  <img src="num1.png" alt="" style="height:200px">
+  <img src="sv723.png" alt="" style="height:200px">
 <figcaption>
 	Fig. 10: This example shows the k-means
 	processed image and grayscale image (32x32) for
@@ -339,7 +326,7 @@ images were identified with 37.3% accuracy.
 	
 <h4>MNIST - Single Digit Identification</h4>
 <br><br>  
-  <img src="num1.png" alt="" style="height:200px">
+  <img src="kmean5.png" alt="" style="height:200px">
 <figcaption>
 Fig. 11: MNIST after using three different preprocessing 
 	methods for image prediction. In this scenario, 
