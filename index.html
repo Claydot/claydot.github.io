@@ -107,7 +107,7 @@ We approached this problem using CNNs due to their robust capabilities at learni
 	and this can be useful if the model can be computationally expensive. 
  <br><br>
   <figure>
-    <img src="MNIST.png" alt="" style="height:200px">
+    <img src="MNIST.png" alt="" style="height:200px" class="center">
   <figcaption>Figure 1: Example Images from the MNIST dataset  </figcaption>
 </figure>
  <br><br>
@@ -127,9 +127,9 @@ The model trained on the SVHN dataset has 10 sequential hidden
 	the train set of the SVHN dataset. The backpropagation
 	utilizes the Cross Entropy Loss Function and we optimize
 	using stochastic gradient descent.
-
+<br><br>
    <figure>
-       <img src="SVHN.png" alt="" style="height:200px">
+       <img src="SVHN.png" alt="" style="height:200px" class="center">
   <figcaption>Figure 2. Example Images from the SVHN dataset</figcaption>
 </figure>
 <br>
@@ -143,7 +143,7 @@ After training our models, we preprocess images for easy user
 	via thresholding and applying the following
 	blurring kernel filter:
 	<br>
-	<img src="kernel.PNG" alt="" style="height:50px" class="center">
+	<img src="kernel.PNG" alt="" style="height:75px" class="center">
 <br>
 <br>
 After applying the blurring filter we find 5 contours of the image 
@@ -155,7 +155,7 @@ After applying the blurring filter we find 5 contours of the image
   <br>
 <br> 
    <figure>
-       <img src="sampleBounding.PNG" alt="" style="height:200px">
+       <img src="sampleBounding.PNG" alt="" style="height:300px" class="center">
   <figcaption>Fig. 3: Sample image of bounding box algorithm output at top. The bottom contains the full image.</figcaption>
 </figure>
 
@@ -164,7 +164,7 @@ After this step,  we continue the preprocessing of the image by applying two met
 
 <br><br>
    <figure>
-       <img src="preprocessed.PNG" alt="" style="height:200px">
+       <img src="preprocessed.PNG" alt="" style="height:300px" class="center">
   <figcaption>Fig. 4: Resulting images after preprocessing. We also include the predicted digit inferred from the MNIST model. Fig. 4a (upper left): Edge detection preprocessing done on the input image. Fig. 4b (upper right): K-means preprocessing done on the input image. Fig. 4c (lower left): Original image. Fig. 4d (lower right): No processing done, the image is resized (28 x 28) and converted to grayscale. The colors shown are a result of OpenCV BGR color transformation.
 </figcaption>
 </figure>
@@ -211,7 +211,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   and the testing accuracy converges to 99% after around 5 epochs.
   <br><br>
   <figure>
-  <img src="epochs.PNG" alt="" style="height:200px">
+  <img src="epochs.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 5: Likelihood Loss/Accuracy vs. Epochs for the MNIST trained CNN</figcaption>
   </figure>
 <br><br>
@@ -222,7 +222,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
 	complexity of the model, thus by using regularization it
 	is possible to train complex models.
 	
-	<img src="epoch50.PNG" alt="" style="height:200px">
+	<img src="epoch50.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
 <br><br>
@@ -234,7 +234,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
  consider it as a success case.
  <br><br>
   <figure>
-  <img src="testcases.PNG" alt="" style="height:200px">
+  <img src="testcases.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 7: Sample images of single digits</figcaption>
   </figure>
 SVHN Model:
@@ -266,7 +266,7 @@ image preprocessing, we verify which method increases our inference ability.
 <h3>Secondary Test</h3>
 We provide 25 test cases (25 short videos with different multiple handwritten digits)  and test the model. If our model creates a text file which contains the equivalent digits from the test video, we will consider it as a success case.
 <figure>
-<img src="test25.PNG" alt="" style="height:200px">
+<img src="test25.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 8: Sample images of multiple handwritten digits</figcaption>
 </figure>
 
@@ -300,7 +300,7 @@ images were identified with 37.3% accuracy.</li>
   I STOPPED HERE
   
 <figure>
-<img src="kmeans3.PNG" alt="" style="height:200px">
+<img src="kmeans3.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 9: An example of the 5-digit classifier under 
 	preprocessing (using K-means) and not using preprocessing. 
 	In this example the classifier outputs a digit [0-10] with a
@@ -310,7 +310,7 @@ images were identified with 37.3% accuracy.</li>
 	<br><br>
 <h4>SVHN - Multi Digit Identification</h4>
 <br><br>  
-  <img src="sv723.PNG" alt="" style="height:200px">
+  <img src="sv723.PNG" alt="" style="height:200px" class="center">
 <figcaption>
 	Fig. 10: This example shows the k-means
 	processed image and grayscale image (32x32) for
@@ -321,7 +321,7 @@ images were identified with 37.3% accuracy.</li>
 	
 <h4>MNIST - Single Digit Identification</h4>
 <br><br>  
-  <img src="kmean5.PNG" alt="" style="height:200px">
+  <img src="kmean5.PNG" alt="" style="height:300px" class="center">
 <figcaption>
 Fig. 11: MNIST after using three different preprocessing 
 	methods for image prediction. In this scenario, 
