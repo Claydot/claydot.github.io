@@ -41,54 +41,108 @@ color: #FF9900;
 <span style="font-size: 18px; line-height: 1.5em;">Georgia Tech</span>
 <hr>
 <!-- Goal -->
-<h2>Midterm Update</h2>
+<h2>Final Update</h2>
 <h3>Abstract</h3>
 In this project, we are looking at applying multi-digit detection from real-world image frames via a live video feed. In real world scenarios, image detection from videos is difficult because many elements (e.g. occlusion, lighting, rotation) add more complexity to object recognition. We trained two convolutional neural networks (CNNs) from scratch on labeled datasets of digit images, and the model makes inference on all of the digits in an image received from a live webcam video feed. The model trained on MNIST dataset achieves 98% accuracy on test set and the model trained on the SVHN dataset achieves 90\9% accuracy on the test set. In this paper, we investigate using deep learning for hand-written digit recognition. In addition, we use DNNs to detect images with multiple digits and compare these models with a classical approach for digit detection and classification . We show that deep networks are not only able to classify digits, but they are also able to localize them.
-<br>
+<br><br>
 Our project’s goal is to create a modular framework for multi-digit detection using deep neural networks. We train a model on digit datasets acquired from the internet and attempt inference of live video feed for handwritten digits which we post process to include bounding boxes over detected digits and return the predicted digits in machine encoded text (e.g. txt, csv, xls, etc.).
 <br>
 <br>
   <img src="teaser.png">
   
 <h3>Introduction</h3>
-In the physical world, humans draw and write their abstract idea or knowledge to better explain to audiences. As computer technology has developed, streaming media emerges as new visual means to convey information to distant audiences. Although humans can easily understand the contents displayed in streaming video, it is difficult for machines to recognize the contents of the images embedded in the video. Due to this, the information in the video cannot be processed or fully characterized by the computer system. (https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.pdf) We propose to train a Convolutional Neural Network (CNN) on datasets on handwritten digits and house numbers to classify single/multiple handwritten digits from live video feed. The digits in the feed will have bounding boxes with a predicted label from the model. 
- 
+In the physical world, humans draw and write their abstract 
+	idea or knowledge to better explain to audiences. 
+	As computer technology has developed, streaming media 
+	emerges as new visual means to convey information to 
+	distant audiences. Although humans can easily understand
+	the contents displayed in streaming video, it is 
+	difficult for machines to recognize the contents 
+	of the images embedded in the video. Due to this,
+	the information in the video cannot be processed 
+	or fully characterized by the computer system [1]. 
+	We propose to train a Convolutional Neural Network 
+	(CNN) on datasets on handwritten digits and house 
+	numbers to classify single/multiple handwritten digits 
+	from live video feed. The digits in the feed will have
+	bounding boxes with a predicted label from the model. 
+ <br>
+<br>
 With the large number of the hand-written documents, there is a great demand to convert the handwritten documents into digital record copies, which are more accessible through digital systems, such as digital forms and databases. To automatically accomplish the transformation from handwritten numbers to their digital version, multi-digit recognition is inevitable and useful.
- 
+ <br>
+<br>
 Text recognition from images is an important task that has multiple real-world applications such as text localization [1] [2], transcription of text into digital format [3] [4], car plate reading [5] [6] [7] [8], automatic check reading [9], classifying text from unlabeled/partially labeled documents [10], recognizing road signs and house number [11] [12], etc. Traditionally hand designed features are used for image classification [13] [14] [15] [16] [17]. However, these techniques require a huge amount of engineering effort, and often do not generalize to novel situations.
 Recent techniques in deep learning have allowed efficient automatic learning of features that are superior to hand designed features. As a result, we are able to train classifier that is significantly more accurate compared to previous methods. In this paper, we investigate using deep learning to classify handwritten digits, and show that with a simple deep network, we can classify digits with near-perfect accuracy. We test our methods on the MNIST dataset [18]. This dataset consists of 50,000 training digit images and 10,000 testing images and is an important benchmark for deep learning methods. Samples images from the dataset are shown in Figure 1. On this dataset, we achieve an accuracy of 99.3% on the test set. We also investigate classifying multiple digits, where more than one digit is present in an image. An example of this task is shown in Figure 2. We design a novel method of applying classifier of a single digit to an image with multiple digits. Though the number of digits and their location is unknown a-priori, our method is able to accurately localize and classify all the digits in the image. 
-In many real-world problems, such as car plate detection [5] [6] [7] [8] or house number recognition [11] there are multiple digits in the same image, and their location is unknown to us. Therefore, not only do we want to classify existing digits, we would also like to locate where the digits are, and how many there are. We show that based on the deep classifier we trained before we can design an algorithm to accomplish this. What we need is that given an image patch we must identify both whether there is a digit in the image patch, and what digit it is, if there is one. If we can accomplish this, then we may simply apply this method to each patch of our input image, and we will be able to localize and classify all the digits in the image.
+<br>
+<br>
+	In many real-world problems, such as car plate detection [5] [6] [7] [8] or house number recognition [11] there are multiple digits in the same image, and their location is unknown to us. Therefore, not only do we want to classify existing digits, we would also like to locate where the digits are, and how many there are. We show that based on the deep classifier we trained before we can design an algorithm to accomplish this. What we need is that given an image patch we must identify both whether there is a digit in the image patch, and what digit it is, if there is one. If we can accomplish this, then we may simply apply this method to each patch of our input image, and we will be able to localize and classify all the digits in the image.
 
 <br><br>
 
 <!-- figure -->
 <h3>Approach</h3>
 We approached this problem using CNNs due to their robust capabilities at learning complex features from image data, which would help us extend classical approaches for digit detection to overcome image deformations, occlusions or minor distortions that might inhibit classical computer vision programs from detecting images. A CNN is similar to an ordinary neural network that consists of neurons that have learnable weights and biases. CNNs, however, makes the explicit assumption that the inputs are images by having the layers arranged in three dimensions: width, height, and depth. This makes the forward function more efficient to implement and reduces the amount of parameters in the network, as the neurons will only be connected to a small region of the previous layer. Regular neural networks do not scale well to full images. For example, an image with 200x200 pixels with 3 RGB values will lead to neurons that have 200*200*3 = 120,000 weights. With several neurons, the parameters would add up quickly.  Our entire system can be described in three phases: training CNN models, digit localization using classical approaches and digit identification using the trained models.
+<br>
+<br>
 	We used Pytorch to generate two CNN models due to the ease of implementation and wealth of resources available for interacting with Pytorch trained models. In addition, each CNN is trained on one of two datasets we used. The MNIST dataset (http://yann.lecun.com/exdb/mnist/) is a database which contains 60000 training datasets and 10000 test datasets on handwritten digits, and the SVHN datasets (http://ufldl.stanford.edu/housenumbers/) contain 73257 training datasets and 26032 test datasets of the street view house numbers. The MNIST dataset is the canonical data set for handwritten digit identification. Most data scientists have experimented with this data set. It contains around 60,000 handwritten digits for training and 10,000 for testing. However, the digits in real life scenarios are generally very different and can vary in shade, texture and/or size. A bit for research leads us to one more public dataset SVHN — Street View House Numbers dataset. The dataset consists of house-number images gathered from Google’s street view and annotated. These numbers are taken from “real world” instances of digits located on houses which, depending on how the images were taken, capture a wide variety of lighting and shape variations that a digit can have.
-We trained a CNN using the MNIST Dataset and the SVHN dataset to perform the end-to-end task of simultaneously recognizing and localizing all the digits of a number. We trained CNNs using Pytorch and evaluated each model based on their loss, accuracy, and learning time. The architecture of the model to train on the MNIST dataset was [CONV1 - RELU - POOL -  CONV2 - RELU - POOL - FC1 - RELU - FC2 - LOG_SOFTMAX]. The first conv layer has 1 input image channel, 20 output image channels, and 5x5 square convolution kernel followed by a RELU layer (elementwise activation function) Pooling layer to perform a downsampling operation along the spatial dimensions. The second conv layer has 20 input channels, 50 output channels, and 5x5 square convolution kernel followed by same RELU and pooling layer. Then, two fully connected layers and a log of a softmax layer are used to compute the class scores. Log softmax layer improves numerical performance and gradient optimization (https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability), and this can be useful if the model can be computationally expensive. 
+
+<br>
+<br>
+	We trained a CNN using the MNIST Dataset and the SVHN dataset to perform the end-to-end task of simultaneously recognizing and localizing all the digits of a number. We trained CNNs using Pytorch and evaluated each model based on their loss, accuracy, and learning time. The architecture of the model to train on the MNIST dataset was [CONV1 - RELU - POOL -  CONV2 - RELU - POOL - FC1 - RELU - FC2 - LOG_SOFTMAX]. The first conv layer has 1 input image channel, 20 output image channels, and 5x5 square convolution kernel followed by a RELU layer (elementwise activation function) Pooling layer to perform a downsampling operation along the spatial dimensions. The second conv layer has 20 input channels, 50 output channels, and 5x5 square convolution kernel followed by same RELU and pooling layer. Then, two fully connected layers and a log of a softmax layer are used to compute the class scores. Log softmax layer improves numerical performance and gradient optimization (https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability), and this can be useful if the model can be computationally expensive. 
  <br><br>
   <figure>
     <img src="MNIST.png" alt="" style="height:200px">
-  <figcaption>Example Images from the MNIST dataset  </figcaption>
+  <figcaption>Figure 1: Example Images from the MNIST dataset  </figcaption>
 </figure>
-The model trained on the SVHN dataset has 10 sequential hidden layers with layers 1-8 having the following structure: CONV-BATCHNORM-RELU-MAXPOOL-DROPOUT, the last three layers are fully connected. All convolution layers have a kernel size of 5x5 and the first convolution layer has 3 input channels and 48 output channels. The last convolution layer has 192 input channels and 192 output channels and each convolution layer is followed by a batch norm layer to do a normalization operation on the output features from the previous layer followed by a RELU operation. The model contains 3 fully connected layers where the final output layer is trained to classify digits from the train set of the SVHN dataset. The backpropagation utilizes the Cross Entropy Loss Function and we optimize using stochastic gradient descent.
+The model trained on the SVHN dataset has 10 sequential hidden 
+	layers with layers 1-8 having the following structure: 
+	CONV-BATCHNORM-RELU-MAXPOOL-DROPOUT, the last three 
+	layers are fully connected. All convolution layers 
+	have a kernel size of 5x5 and the first convolution 
+	layer has 3 input channels and 48 output channels. 
+	The last convolution layer has 192 input channels 
+	and 192 output channels and each convolution layer 
+	is followed by a batch norm layer to do a 
+	normalization operation on the output features 
+	from the previous layer followed by a RELU operation.
+	The model contains 3 fully connected layers where the 
+	final output layer is trained to classify digits from 
+	the train set of the SVHN dataset. The backpropagation
+	utilizes the Cross Entropy Loss Function and we optimize
+	using stochastic gradient descent.
 
    <figure>
        <img src="SVHN.png" alt="" style="height:200px">
-  <figcaption>Example Images from the SVHN dataset</figcaption>
+  <figcaption>Figure 2. Example Images from the SVHN dataset</figcaption>
 </figure>
 
 INSERT STUFF
 <br>
 
-After training our models, we preprocess images for easy user recognition and to ease classifier digit classification by developing a bounding box algorithm. We do this by converting the image to a binary image via thresholding and applying the following blurring kernel filter:
+After training our models, we preprocess images for easy user 
+	recognition and to ease classifier digit 
+	classification by developing a bounding box algorithm.
+	We do this by converting the image to a binary image 
+	via thresholding and applying the following
+	blurring kernel filter:
+<br>
+<br>
+<br>
 INSERT KERNAL
 <br>
-After applying the blurring filter we find 5 contours of the image by sorting the contours (https://www.sciencedirect.com/science/article/pii/0734189X85900167) with the largest rectangular area. This algorithm returns the positions in the original image of the bounding boxes corresponding to a single digit. We will use this to extend the MNIST model by segmenting multi-digit images and classifying the individual numbers.
-   
+<br>
+<br>
+After applying the blurring filter we find 5 contours of the image 
+	by sorting the contours [2] with the largest rectangular area.
+	This algorithm returns the positions in the original image of
+	the bounding boxes corresponding to a single digit. We will use 
+	this to extend the MNIST model by segmenting multi-digit images
+	and classifying the individual numbers.
+  <br>
+<br> 
    <figure>
        <img src="SVHN.png" alt="" style="height:200px">
-  <figcaption>Sample Image of Bounding Box Algo</figcaption>
+  <figcaption>Figure 3. Sample Image of Bounding Box Algo</figcaption>
 </figure>
 
 <br><br>
@@ -289,6 +343,8 @@ In conclusion, we have developed an end-to-end
   
  <h3>References</h3> 
   [1] <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2014/html/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html">https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html</a>
+ <br><br>
+[2] <a href="https://www.sciencedirect.com/science/article/pii/0734189X85900167">https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html</a>
  <br><br>
     [2] <a href="http://yann.lecun.com/exdb/mnist/">http://yann.lecun.com/exdb/mnist/f</a>
   <br><br>
