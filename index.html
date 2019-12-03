@@ -143,7 +143,7 @@ After training our models, we preprocess images for easy user
 	via thresholding and applying the following
 	blurring kernel filter:
 	<br>
-	<img src="kernel.PNG" alt="" style="height:75px" class="center">
+	<img src="kernel.PNG" alt="" style="height:50px" class="center">
 <br>
 <br>
 After applying the blurring filter we find 5 contours of the image 
@@ -226,7 +226,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
 <br><br>
-<h3>Primary Test</h3>
+<h4>Primary Test</h4>
   <br>
  We provide 50 test cases (50 short videos with different single 
  handwritten digit) and test the models. If our models create a text 
@@ -237,6 +237,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   <img src="testcases.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 7: Sample images of single digits</figcaption>
   </figure>
+<br><br>
 SVHN Model:
 Using the model trained to detect up to 5 digits in a single image, 
 we test our preprocessing algorithms on hand written images.
@@ -263,8 +264,9 @@ image preprocessing, we verify which method increases our inference ability.
 </ul>
 <br><br>
 
-<h3>Secondary Test</h3>
+<h4>Secondary Test</h4>
 We provide 25 test cases (25 short videos with different multiple handwritten digits)  and test the model. If our model creates a text file which contains the equivalent digits from the test video, we will consider it as a success case.
+<br><br>
 <figure>
 <img src="test25.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 8: Sample images of multiple handwritten digits</figcaption>
@@ -297,15 +299,14 @@ images were identified with 37.3% accuracy.</li>
 <br><br>
 <h3>Qualitative Results</h3>
   <h4>SVHN - Single Digit Identification</h4>
-  I STOPPED HERE
-  
 <figure>
 <img src="kmeans3.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 9: An example of the 5-digit classifier under 
 	preprocessing (using K-means) and not using preprocessing. 
 	In this example the classifier outputs a digit [0-10] with a
 	10 output if it does not have a guess. Using k-means, it was 
-	able to correctly identify the digit 3./figcaption>
+	able to correctly identify the digit 3.
+	</figcaption>
 </figure>
 	<br><br>
 <h4>SVHN - Multi Digit Identification</h4>
