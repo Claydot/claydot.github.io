@@ -106,7 +106,7 @@ We approached this problem using CNNs due to their robust capabilities at learni
 	numerical performance and gradient optimization [4], 
 	and this can be useful if the model can be computationally expensive. 
  <br><br>
-  <figure>
+  <figure class="center">
     <img src="MNIST.png" alt="" style="height:200px" class="center">
   <figcaption>Figure 1: Example Images from the MNIST dataset  </figcaption>
 </figure>
@@ -128,7 +128,7 @@ The model trained on the SVHN dataset has 10 sequential hidden
 	utilizes the Cross Entropy Loss Function and we optimize
 	using stochastic gradient descent.
 <br><br>
-   <figure>
+   <figure class="center">
        <img src="SVHN.png" alt="" style="height:200px" class="center">
   <figcaption>Figure 2. Example Images from the SVHN dataset</figcaption>
 </figure>
@@ -154,7 +154,7 @@ After applying the blurring filter we find 5 contours of the image
 	and classifying the individual numbers.
   <br>
 <br> 
-   <figure>
+   <figure class="center">
        <img src="sampleBounding.PNG" alt="" style="height:300px" class="center">
   <figcaption>Fig. 3: Sample image of bounding box algorithm output at top. The bottom contains the full image.</figcaption>
 </figure>
@@ -163,7 +163,7 @@ After applying the blurring filter we find 5 contours of the image
 After this step,  we continue the preprocessing of the image by applying two methods of segmentation to increase the contrast of the images for prediction: k-means segmentation and edge detection. Using K-means, the image is segmented into two clusters and the output is resized for input into our CNN model. We use the Canny edge detection algorithm to perform a morphological operation on the image and increase the fidelity of the line segments in an image; following this, the image is dilated and eroded, also known as opening the image, to remove noise and connect line segments within an image. The efficacy of these approaches is verified in the experiment and results section.
 
 <br><br>
-   <figure>
+   <figure class="center">
        <img src="preprocessed.PNG" alt="" style="height:300px" class="center">
   <figcaption>Fig. 4: Resulting images after preprocessing. We also include the predicted digit inferred from the MNIST model. Fig. 4a (upper left): Edge detection preprocessing done on the input image. Fig. 4b (upper right): K-means preprocessing done on the input image. Fig. 4c (lower left): Original image. Fig. 4d (lower right): No processing done, the image is resized (28 x 28) and converted to grayscale. The colors shown are a result of OpenCV BGR color transformation.
 </figcaption>
@@ -210,7 +210,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   accuracy, the training accuracy converges to around 99% after 5 epochs, 
   and the testing accuracy converges to 99% after around 5 epochs.
   <br><br>
-  <figure>
+  <figure class="center">
   <img src="epochs.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 5: Likelihood Loss/Accuracy vs. Epochs for the MNIST trained CNN</figcaption>
   </figure>
@@ -233,7 +233,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
  file which contains the equivalent digit from the test video, we will 
  consider it as a success case.
  <br><br>
-  <figure>
+  <figure class="center">
   <img src="testcases.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 7: Sample images of single digits</figcaption>
   </figure>
@@ -265,7 +265,7 @@ image preprocessing, we verify which method increases our inference ability.
 
 <h3>Secondary Test</h3>
 We provide 25 test cases (25 short videos with different multiple handwritten digits)  and test the model. If our model creates a text file which contains the equivalent digits from the test video, we will consider it as a success case.
-<figure>
+<figure class="center">
 <img src="test25.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 8: Sample images of multiple handwritten digits</figcaption>
 </figure>
@@ -299,7 +299,7 @@ images were identified with 37.3% accuracy.</li>
   <h4>SVHN - Single Digit Identification</h4>
   I STOPPED HERE
   
-<figure>
+<figure class="center">
 <img src="kmeans3.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 9: An example of the 5-digit classifier under 
 	preprocessing (using K-means) and not using preprocessing. 
