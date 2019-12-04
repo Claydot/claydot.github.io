@@ -252,7 +252,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
 	the problem of overfitting because it reduces the
 	complexity of the model, thus by using regularization it
 	is possible to train complex models.
-	
+<figure>
 	<img src="epoch50.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
@@ -261,6 +261,17 @@ on 10000 images, it achieved an accuracy score of 0.955.
 	<br><br>
 	Another issue with the sliding window approach is that it runs the model more than 40 times for the given one image frame to test different sized sliding windows. Consequently, the system gets slower and shows buggy behaviors. Therefore, we decided that the sliding window approach is not proper for the digit detection performance on the live time video. 
 <br><br>
+	When the numbers on the image are in right sizes and in right position, the model detects the digits correctly with the sliding window, but when the image frame has a huge blank margin, the chances it detects some random number increase greatly.
+<br><br>
+<figure>
+	<img src="sliding_success.gif" alt="" style="height:200px" class="center">
+  <figcaption>Success Case</figcaption>
+  </figure>	
+	<figure>
+	<img src="sliding_failure.gif" alt="" style="height:200px" class="center">
+  <figcaption>Failure Case</figcaption>
+  </figure>
+	
 <h3>Primary Test</h3>
   <br>
  We provide 50 test cases (50 short videos with different single 
