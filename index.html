@@ -143,7 +143,7 @@ After training our models, we preprocess images for easy user
 	via thresholding and applying the following
 	blurring kernel filter:
 	<br>
-	<img src="kernel.PNG" alt="" style="height:50px" style="width:70px">
+	<img src="kernel.PNG" class="center">
 <br>
 <br>
 After applying the blurring filter we find 5 contours of the image 
@@ -226,7 +226,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
 <br><br>
-<h4>Primary Test</h4>
+<h3>Primary Test</h3>
   <br>
  We provide 50 test cases (50 short videos with different single 
  handwritten digit) and test the models. If our models create a text 
@@ -237,7 +237,6 @@ on 10000 images, it achieved an accuracy score of 0.955.
   <img src="testcases.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 7: Sample images of single digits</figcaption>
   </figure>
-<br><br>
 SVHN Model:
 Using the model trained to detect up to 5 digits in a single image, 
 we test our preprocessing algorithms on hand written images.
@@ -264,9 +263,8 @@ image preprocessing, we verify which method increases our inference ability.
 </ul>
 <br><br>
 
-<h4>Secondary Test</h4>
+<h3>Secondary Test</h3>
 We provide 25 test cases (25 short videos with different multiple handwritten digits)  and test the model. If our model creates a text file which contains the equivalent digits from the test video, we will consider it as a success case.
-<br><br>
 <figure>
 <img src="test25.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 8: Sample images of multiple handwritten digits</figcaption>
@@ -299,19 +297,19 @@ images were identified with 37.3% accuracy.</li>
 <br><br>
 <h3>Qualitative Results</h3>
   <h4>SVHN - Single Digit Identification</h4>
+  I STOPPED HERE
+  
 <figure>
 <img src="kmeans3.PNG" alt="" style="height:200px" class="center">
 <figcaption>Fig. 9: An example of the 5-digit classifier under 
 	preprocessing (using K-means) and not using preprocessing. 
 	In this example the classifier outputs a digit [0-10] with a
 	10 output if it does not have a guess. Using k-means, it was 
-	able to correctly identify the digit 3.
-	</figcaption>
+	able to correctly identify the digit 3./figcaption>
 </figure>
 	<br><br>
 <h4>SVHN - Multi Digit Identification</h4>
 <br><br>  
-<figure>
   <img src="sv723.PNG" alt="" style="height:200px" class="center">
 <figcaption>
 	Fig. 10: This example shows the k-means
@@ -323,7 +321,6 @@ images were identified with 37.3% accuracy.</li>
 	
 <h4>MNIST - Single Digit Identification</h4>
 <br><br>  
-<figure>
   <img src="kmean5.PNG" alt="" style="height:300px" class="center">
 <figcaption>
 Fig. 11: MNIST after using three different preprocessing 
@@ -354,16 +351,35 @@ In conclusion, we have developed an end-to-end
 
   
  <h3>References</h3> 
-  [1] <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2014/html/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html">https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html</a>
- <br><br>
-[2] <a href="https://www.sciencedirect.com/science/article/pii/0734189X85900167">https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.html</a>
- <br><br>
-    [2] <a href="http://yann.lecun.com/exdb/mnist/">http://yann.lecun.com/exdb/mnist/f</a>
-  <br><br>
-      [3] <a href="http://ufldl.stanford.edu/housenumbers/">http://ufldl.stanford.edu/housenumbers/</a>
-  <br><br>
-     [4] <a href="https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability/">https://stats.stackexchange.com/questions/174481/why-to-optimize-max-log-probability-instead-of-probability/</a>
-  <br><br>
+	[1] Real-Time Scene Text Localization and Recognition <a href="http://fadaei.semnan.ac.ir/uploads/MV7.pdf">http://fadaei.semnan.ac.ir/uploads/MV7.pdf</a>
+	<br><br>
+	[2] TexT - Text Extractor Tool for Handwritten Document Transcription and Annotation <a href="https://arxiv.org/pdf/1801.05367.pdf">https://arxiv.org/pdf/1801.05367.pdf</a>
+	<br><br>
+	[3] Automatic License Plate Detection & Recognition using deep learning <a href="https://towardsdatascience.com/automatic-license-plate-detection-recognition-using-deep-learning-624def07eaaf">https://towardsdatascience.com/automatic-license-plate-detection-recognition-using-deep-learning-624def07eaaf</a>
+	
+	<br><br>
+	[4] Handwritten Bank Check Recognition of Courtesy Amounts <a href="https://pdfs.semanticscholar.org/60a3/8d528d6f785c31beec2ba91f2edb7e8c2f06.pdf">https://pdfs.semanticscholar.org/60a3/8d528d6f785c31beec2ba91f2edb7e8c2f06.pdf</a>
+	<br><br>
+	[5] SVHN dataset <a href="http://ufldl.stanford.edu/housenumbers/">http://ufldl.stanford.edu/housenumbers/</a>
+	<br><br>
+	[6] A survey of recent and classical recognition methods <a href="https://pdfs.semanticscholar.org/d09a/931337ff1577f1e5aef0228df56673426266.pdf">https://pdfs.semanticscholar.org/d09a/931337ff1577f1e5aef0228df56673426266.pdf</a>
+	<br><br>
+	[7] <a href="Textural Features for Image Classification">https://ieeexplore.ieee.org/abstract/document/4309314</a>
+	<br><br>
+	[8] MNIST dataset <a href="http://yann.lecun.com/exdb/mnist/">http://yann.lecun.com/exdb/mnist/</a>
+	<br><br>
+	[9] Video classification of digits w/ CNNs <a href="https://github.com/ronrest/real_time_multi_digit_recognition/blob/master/report.pdf">https://github.com/ronrest/real_time_multi_digit_recognition/blob/master/report.pdf</a>
+	<br><br>
+	[10] A webpage explaining Convolutional Networks <a href="http://cs231n.github.io/convolutional-networks/">http://cs231n.github.io/convolutional-networks/</a>
+	<br><br>
+	[11] Website of video classification of multi digit w/ CNNs <a href="http://ronny.rest/portfolio/multi_digit">http://ronny.rest/portfolio/multi_digit</a>
+	<br><br>
+	[12] Large-scale Video Classification with Convolutional Neural Networks  <a href="https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.pd">https://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Karpathy_Large-scale_Video_Classification_2014_CVPR_paper.pd</a>
+	<br><br>
+	[13] Handwritten digit recognition using opencv and sklearn <a href="http://hanzratech.in/2015/02/24/handwritten-digit-recognition-using-opencv-sklearn-and-python.html">http://hanzratech.in/2015/02/24/handwritten-digit-recognition-using-opencv-sklearn-and-python.html</a>
+	<br><br>
+	
+
 	
 	
   
