@@ -106,7 +106,7 @@ We used Pytorch to generate two CNN models due to the ease of implementation and
  <br><br>
   <figure class="center">
     <img src="MNIST.png" alt="" style="height:200px" class="center">
-  <figcaption>Figure 1: Example Images from the MNIST dataset  </figcaption>
+  <figcaption>Figure 1. Example Images from the MNIST dataset  </figcaption>
 </figure>
  <br><br>
 The model trained on the SVHN dataset has 10 sequential hidden 
@@ -141,7 +141,7 @@ Another approach we tried to detect multi digit image frame was applying
  <br><br>
 <figure class="center">
        <img src="working_sliding_window.gif" alt="" style="height:200px" class="center">
-  <figcaption>Working Sliding Window</figcaption>
+  <figcaption>Figure 3. Working Sliding Window</figcaption>
 </figure>
 <Sliding window optimal case gif>
  <br><br>
@@ -149,7 +149,7 @@ The problem of the sliding window algorithm is that it cannot properly detect th
  <br><br>
 <figure class="center">
 <img src="failure_sliding_window.gif" alt="" style="height:200px" class="center">
-<figcaption>Failure Sliding Window</figcaption>
+<figcaption>Figure 4. Failure Sliding Window</figcaption>
 </figure>
  <br><br>
 To solve this problem, we have applied the following techniques in the sliding window algorithm:
@@ -187,7 +187,7 @@ After applying the blurring filter we find 5 contours of the image
 <br> 
    <figure class="center">
        <img src="sampleBounding.PNG" alt="" style="height:300px" class="center">
-  <figcaption>Fig. 3: Sample image of bounding box algorithm output at top. The bottom contains the full image.</figcaption>
+  <figcaption>Figure 5. Sample image of bounding box algorithm output at top. The bottom contains the full image.</figcaption>
 </figure>
 
 <br><br>
@@ -196,7 +196,7 @@ After this step,  we continue the preprocessing of the image by applying two met
 <br><br>
    <figure class="center">
        <img src="preprocessed.PNG" alt="" style="height:300px" class="center">
-  <figcaption>Fig. 4: Resulting images after preprocessing. We also include the predicted digit inferred from the MNIST model. Fig. 4a (upper left): Edge detection preprocessing done on the input image. Fig. 4b (upper right): K-means preprocessing done on the input image. Fig. 4c (lower left): Original image. Fig. 4d (lower right): No processing done, the image is resized (28 x 28) and converted to grayscale. The colors shown are a result of OpenCV BGR color transformation.
+  <figcaption>Figure 6. Resulting images after preprocessing. We also include the predicted digit inferred from the MNIST model. Fig. 4a (upper left): Edge detection preprocessing done on the input image. Fig. 4b (upper right): K-means preprocessing done on the input image. Fig. 4c (lower left): Original image. Fig. 4d (lower right): No processing done, the image is resized (28 x 28) and converted to grayscale. The colors shown are a result of OpenCV BGR color transformation.
 </figcaption>
 </figure>
 <br><br>
@@ -243,7 +243,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   <br><br>
   <figure class="center">
   <img src="epochs.PNG" alt="" style="height:200px" class="center">
-  <figcaption>Fig. 5: Likelihood Loss/Accuracy vs. Epochs for the MNIST trained CNN</figcaption>
+  <figcaption>Figure 7. Likelihood Loss/Accuracy vs. Epochs for the MNIST trained CNN</figcaption>
   </figure>
 <br><br>
 	With this dataset, we didn’t have a big 
@@ -254,7 +254,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
 	is possible to train complex models.
 <figure>
 	<img src="epoch50.PNG" alt="" style="height:200px" class="center">
-  <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
+  <figcaption>Figure 8. Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
 <br><br>
 	The approach with the sliding window did not work well with our digit detecting model for the following reasons. Our model always returns one number based on probability in the given image layer, and it returns a number even when there is no number provided in the given image frame. When we run the model in our modified sliding window algorithm, some random numbers which yielded higher probability in the background image with no numbers on it win over the true positive digits on the image which were detected 2-3 times in certain sliding window layer. The more we divide the sliding windows into different sizes, we yield the higher counts of random numbers.
@@ -267,11 +267,11 @@ on 10000 images, it achieved an accuracy score of 0.955.
 <div style="text-align: center">
 <figure>
 	<img src="sliding_success.gif" alt="" style="height:200px" class="center">
-  <figcaption>Success Case</figcaption>
+  <figcaption>Figure 9. Success Case</figcaption>
   </figure>	
 	<figure>
 	<img src="sliding_failure.gif" alt="" style="height:200px" class="center">
-  <figcaption>Failure Case</figcaption>
+  <figcaption>Figure 10. Failure Case</figcaption>
   </figure>
 </div>
 <h3>Primary Test</h3>
@@ -283,7 +283,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
  <br><br>
   <figure class="center">
   <img src="testcases.PNG" alt="" style="height:200px" class="center">
-  <figcaption>Fig. 7: Sample images of single digits</figcaption>
+  <figcaption>Figure 11. Sample images of single digits</figcaption>
   </figure>
 	<br><br>
 SVHN Model:
@@ -317,7 +317,7 @@ We provide 25 test cases (25 short videos with different multiple handwritten di
 <br><br>
 <figure class="center">
 <img src="test25.PNG" alt="" style="height:200px" class="center">
-<figcaption>Fig. 8: Sample images of multiple handwritten digits</figcaption>
+<figcaption>Figure 12. Sample images of multiple handwritten digits</figcaption>
 </figure>
 
 <br><br>
@@ -350,7 +350,7 @@ images were identified with 37.3% accuracy.</li>
   
 <figure class="center">
 <img src="kmeans3.PNG" alt="" style="height:200px" class="center">
-<figcaption>Fig. 9: An example of the 5-digit classifier under 
+<figcaption>Figure 13. An example of the 5-digit classifier under 
 	preprocessing (using K-means) and not using preprocessing. 
 	In this example the classifier outputs a digit [0-10] with a
 	10 output if it does not have a guess. Using k-means, it was 
@@ -361,7 +361,7 @@ images were identified with 37.3% accuracy.</li>
 <br><br>  
   <img src="sv723.PNG" alt="" style="height:200px" class="center">
 <figcaption>
-	Fig. 10: This example shows the k-means
+	Figure 14. This example shows the k-means
 	processed image and grayscale image (32x32) for
 	the SVHN multi-digit classifier. The predicted numbers
 	are shown at the bottom.
@@ -372,7 +372,7 @@ images were identified with 37.3% accuracy.</li>
 <br><br>  
   <img src="kmean5.PNG" alt="" style="height:300px" class="center">
 <figcaption>
-Fig. 11: MNIST after using three different preprocessing 
+Figure 15. MNIST after using three different preprocessing 
 	methods for image prediction. In this scenario, 
 	only the k-means preprocessing yields the correct
 	prediction (seen at the bottom of the image). 
