@@ -139,11 +139,18 @@ Another approach we tried to detect multi digit image frame was applying
 	easier and simpler than CNN training, and it could be done only with
 	opencv and image processing technologies. 
  <br><br>
+<figure class="center">
+       <img src="working_sliding_window.gif" alt="" style="height:200px" class="center">
+  <figcaption>Working Sliding Window</figcaption>
+</figure>
 <Sliding window optimal case gif>
  <br><br>
 The problem of the sliding window algorithm is that it cannot properly detect the digit if the digit is located at the corner of the sliding window layer, or if one layer has more than one number in it. 
  <br><br>
-<Sliding window failure case gif>
+<figure class="center">
+<img src=""failure_sliding_window.gif"" alt="" style="height:200px" class="center">
+<figcaption>Failure Sliding Window</figcaption>
+</figure>
  <br><br>
 To solve this problem, we have applied the following techniques in the sliding window algorithm:
 <ul>
@@ -152,7 +159,11 @@ To solve this problem, we have applied the following techniques in the sliding w
 	<li>Making some sliding windows to check the cases in which the number is located at the corner of sliding windows</li>
 </ul>
 	<br><br>
-	<Modified Sliding window gif>
+	
+	<figure class="center">
+<img src="modified_sliding_window" alt="" style="height:200px" class="center">
+<figcaption>Modified Sliding Window</figcaption>
+</figure>
 <br>
 <br>
 
