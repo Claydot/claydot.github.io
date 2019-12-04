@@ -131,7 +131,29 @@ The model trained on the SVHN dataset has 10 sequential hidden
   <figcaption>Figure 2. Example Images from the SVHN dataset</figcaption>
 </figure>
 <br>
-INSERT STUFF
+Another approach we tried to detect multi digit image frame was applying 
+	the sliding window algorithm. The methodology of the sliding window 
+	algorithm used in this project was to manually divide the image frame 
+	into smaller regions and run the digit detecting model for each layer. 
+	The benefit of the sliding window algorithm is that its implementation
+	easier and simpler than CNN training, and it could be done only with
+	opencv and image processing technologies. 
+ <br><br>
+<Sliding window optimal case gif>
+ <br><br>
+The problem of the sliding window algorithm is that it cannot properly detect the digit if the digit is located at the corner of the sliding window layer, or if one layer has more than one number in it. 
+ <br><br>
+<Sliding window failure case gif>
+ <br><br>
+To solve this problem, we have applied the following techniques in the sliding window algorithm:
+<ul>
+	<li>Dividing the image into sliding window with several different sizes.</li>
+
+	<li>Making some sliding windows to check the cases in which the number is located at the corner of sliding windows</li>
+</ul>
+	<br><br>
+	<Modified Sliding window gif>
+<br>
 <br>
 
 After training our models, we preprocess images for easy user 
@@ -199,7 +221,7 @@ on 10000 images, it achieved an accuracy score of 0.955.
   to change the hyperparameters.
   <br><br>
   To evaluate the models and the approach, we are using negative 
-  log likelihood loss:  It is useful to train a classification problem 
+  log likelihood loss: L(y) = -log(y). It is useful to train a classification problem 
   with C classes. It is used commonly with a softmax function. When computing 
   the loss, higher confidence at the correct class leads to lower loss and
   vice-versa. Over 10 epochs, we recorded and plotted the loss over time 
@@ -223,6 +245,10 @@ on 10000 images, it achieved an accuracy score of 0.955.
 	<img src="epoch50.PNG" alt="" style="height:200px" class="center">
   <figcaption>Fig. 6: Cross Entropy Loss vs. Epochs for SVHN trained CNN</figcaption>
   </figure>
+<br><br>
+	The approach with the sliding window did not work well with our digit detecting model for the following reasons. Our model always returns one number based on probability in the given image layer, and it returns a number even when there is no number provided in the given image frame. When we run the model in our modified sliding window algorithm, some random numbers which yielded higher probability in the background image with no numbers on it win over the true positive digits on the image which were detected 2-3 times in certain sliding window layer. The more we divide the sliding windows into different sizes, we yield the higher counts of random numbers.
+	<br><br>
+	Another issue with the sliding window approach is that it runs the model more than 40 times for the given one image frame to test different sized sliding windows. Consequently, the system gets slower and shows buggy behaviors. Therefore, we decided that the sliding window approach is not proper for the digit detection performance on the live time video. 
 <br><br>
 <h3>Primary Test</h3>
   <br>
